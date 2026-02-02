@@ -1,5 +1,4 @@
-// Simulado DETRAN 2026 - Lógica Principal
-// Aplicação para prática de prova teórica do DETRAN
+
 
 class SimuladoDetran {
     constructor() {
@@ -23,7 +22,6 @@ class SimuladoDetran {
         this.resultadoContainer = document.getElementById('resultado-container');
         this.gabaritoContainer = document.getElementById('gabarito-container');
         
-        // Estado do simulado
         this.questoesEmbaralhadas = [];
         this.questaoAtual = 0;
         this.respostas = {};
@@ -31,11 +29,9 @@ class SimuladoDetran {
         this.tempoFinal = null;
         this.timerInterval = null;
         
-        // Constantes
         this.TOTAL_QUESTOES = 30;
         this.MINIMO_APROVACAO = 21;
         
-        // Inicializar eventos
         this.inicializarEventos();
     }
     
@@ -48,23 +44,18 @@ class SimuladoDetran {
     }
     
     iniciarSimulado() {
-        // Embaralhar questões
         this.questoesEmbaralhadas = embaralharQuestoes(questoes);
         this.questaoAtual = 0;
         this.respostas = {};
         this.tempoInicio = new Date();
         
-        // Trocar telas
         this.telaInicial.classList.remove('ativa');
         this.telaSimulado.classList.add('ativa');
         
-        // Criar indicadores
         this.criarIndicadores();
         
-        // Exibir primeira questão
         this.exibirQuestao();
         
-        // Iniciar timer
         this.iniciarTimer();
     }
     
@@ -116,7 +107,6 @@ class SimuladoDetran {
         html += '</div>';
         this.questaoContainer.innerHTML = html;
         
-        // Adicionar eventos de clique nas alternativas
         const alternativas = this.questaoContainer.querySelectorAll('.alternativa');
         alternativas.forEach(alt => {
             alt.addEventListener('click', (e) => {
@@ -125,20 +115,16 @@ class SimuladoDetran {
             });
         });
         
-        // Atualizar navegação
         this.atualizarNavegacao();
         
-        // Atualizar progresso
         this.atualizarProgresso();
         
-        // Atualizar indicadores
         this.atualizarIndicadores();
     }
     
     selecionarResposta(index) {
         this.respostas[this.questaoAtual] = index;
         
-        // Atualizar visual
         const alternativas = this.questaoContainer.querySelectorAll('.alternativa');
         alternativas.forEach((alt, i) => {
             alt.classList.remove('selecionada');
@@ -147,7 +133,6 @@ class SimuladoDetran {
             }
         });
         
-        // Atualizar indicadores
         this.atualizarIndicadores();
     }
     
@@ -229,7 +214,6 @@ class SimuladoDetran {
     finalizarSimulado() {
         this.pararTimer();
         
-        // Calcular resultado
         let acertos = 0;
         let erros = 0;
         
@@ -244,20 +228,16 @@ class SimuladoDetran {
         const aprovado = acertos >= this.MINIMO_APROVACAO;
         const porcentagem = (acertos / this.TOTAL_QUESTOES) * 100;
         
-        // Calcular tempo
         const tempoTotal = Math.floor((this.tempoFinal - this.tempoInicio) / 1000);
         const minutos = Math.floor(tempoTotal / 60);
         const segundos = tempoTotal % 60;
         const tempoFormatado = `${minutos}m ${segundos}s`;
         
-        // Exibir resultado
         this.exibirResultado(acertos, erros, aprovado, porcentagem, tempoFormatado);
         
-        // Trocar telas
         this.telaSimulado.classList.remove('ativa');
         this.telaResultado.classList.add('ativa');
         
-        // Criar confetti se aprovado
         if (aprovado) {
             this.criarConfetti();
         }
@@ -310,8 +290,7 @@ class SimuladoDetran {
                 </button>
             </div>
         `;
-        
-        // Adicionar eventos aos botões
+
         document.getElementById('btn-ver-gabarito').addEventListener('click', () => this.verGabarito());
         document.getElementById('btn-refazer').addEventListener('click', () => this.refazerSimulado());
     }
@@ -377,7 +356,6 @@ class SimuladoDetran {
     }
     
     refazerSimulado() {
-        // Resetar estado
         this.telaResultado.classList.remove('ativa');
         this.telaGabarito.classList.remove('ativa');
         this.telaInicial.classList.add('ativa');
@@ -401,7 +379,6 @@ class SimuladoDetran {
     }
 }
 
-// Inicializar o simulado quando a página carregar
 document.addEventListener('DOMContentLoaded', () => {
     new SimuladoDetran();
 });

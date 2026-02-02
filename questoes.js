@@ -1,8 +1,3 @@
-// Banco de Questões - Simulado DETRAN 2026
-// Questões atualizadas conforme o Código de Trânsito Brasileiro (CTB)
-// e Resoluções do CONTRAN vigentes em 2026
-// Banco com 120 questões para garantir máxima variedade entre simulados
-
 const questoes = [
     {
         id: 1,
@@ -1448,10 +1443,8 @@ const questoes = [
     }
 ];
 
-// Histórico de questões usadas nos últimos simulados
 let historicoQuestoes = [];
 
-// Função para embaralhar array
 function embaralharArray(array) {
     const novoArray = [...array];
     for (let i = novoArray.length - 1; i > 0; i--) {
@@ -1461,36 +1454,28 @@ function embaralharArray(array) {
     return novoArray;
 }
 
-// Função inteligente para selecionar questões com 70% de diferença
 function selecionarQuestoesInteligente(totalQuestoes = 30) {
     const todasQuestoes = [...questoes];
     const questoesSelecionadas = [];
     
-    // Questões que foram usadas na última prova
     const questoesUltimaProva = historicoQuestoes.length > 0 ? historicoQuestoes[0] : [];
     
-    // Separa questões novas (não usadas na última prova) das repetidas
     const questoesNovas = todasQuestoes.filter(q => !questoesUltimaProva.includes(q.id));
     const questoesRepetidas = todasQuestoes.filter(q => questoesUltimaProva.includes(q.id));
     
-    // Calcula quantas questões novas precisamos (70% = 21 questões)
-    const minimoNovas = Math.ceil(totalQuestoes * 0.7); // 21 questões novas
-    const maximoRepetidas = totalQuestoes - minimoNovas; // 9 questões podem repetir
+    const minimoNovas = Math.ceil(totalQuestoes * 0.7);
+    const maximoRepetidas = totalQuestoes - minimoNovas;
     
-    // Embaralha as listas
     const questoesNovasEmbaralhadas = embaralharArray(questoesNovas);
     const questoesRepetidasEmbaralhadas = embaralharArray(questoesRepetidas);
     
-    // Seleciona questões novas (pelo menos 70%)
     const quantidadeNovas = Math.min(questoesNovasEmbaralhadas.length, minimoNovas);
     for (let i = 0; i < quantidadeNovas; i++) {
         questoesSelecionadas.push(questoesNovasEmbaralhadas[i]);
     }
     
-    // Completa com questões repetidas se necessário (até 30%)
     let quantidadeRepetidas = Math.min(maximoRepetidas, questoesRepetidasEmbaralhadas.length);
     
-    // Se não temos questões novas suficientes, completa com repetidas
     const faltam = totalQuestoes - questoesSelecionadas.length;
     if (faltam > 0) {
         const repetidasParaAdicionar = Math.min(faltam, questoesRepetidasEmbaralhadas.length);
@@ -1499,7 +1484,6 @@ function selecionarQuestoesInteligente(totalQuestoes = 30) {
         }
     }
     
-    // Se ainda faltam questões (caso o banco seja pequeno), adiciona mais novas
     if (questoesSelecionadas.length < totalQuestoes) {
         const restantes = questoesNovasEmbaralhadas.slice(quantidadeNovas);
         for (let i = 0; i < restantes.length && questoesSelecionadas.length < totalQuestoes; i++) {
@@ -1509,27 +1493,22 @@ function selecionarQuestoesInteligente(totalQuestoes = 30) {
         }
     }
     
-    // Salva o histórico das questões selecionadas
     const idsQuestoesSelecionadas = questoesSelecionadas.map(q => q.id);
     historicoQuestoes.unshift(idsQuestoesSelecionadas);
     
-    // Mantém apenas os últimos 3 simulados no histórico
     if (historicoQuestoes.length > 3) {
         historicoQuestoes = historicoQuestoes.slice(0, 3);
     }
     
-    // Salva no localStorage para persistir entre sessões
     try {
         localStorage.setItem('historicoQuestoesDetran', JSON.stringify(historicoQuestoes));
     } catch (e) {
         console.log('LocalStorage não disponível');
     }
     
-    // Retorna as questões embaralhadas
     return embaralharArray(questoesSelecionadas);
 }
 
-// Carrega histórico do localStorage ao iniciar
 function carregarHistorico() {
     try {
         const salvo = localStorage.getItem('historicoQuestoesDetran');
@@ -1542,15 +1521,12 @@ function carregarHistorico() {
     }
 }
 
-// Carrega o histórico quando o script é carregado
 carregarHistorico();
 
-// Função legada para compatibilidade (agora usa a seleção inteligente)
 function embaralharQuestoes(array) {
     return selecionarQuestoesInteligente(30);
 }
 
-// Exportar para uso no app.js
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { questoes, embaralharQuestoes, selecionarQuestoesInteligente };
 }
