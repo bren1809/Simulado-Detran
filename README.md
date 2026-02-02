@@ -8,25 +8,23 @@ Aplicação web para estudo e preparação para a prova teórica do DETRAN. Cont
 
 ## ✨ Funcionalidades
 
-- 📝 **30 questões por simulado** - Igual à prova oficial do DETRAN
-- 🔄 **Sistema inteligente** - A cada simulado, pelo menos 70% das questões são diferentes
-- ⏱️ **Timer** - Acompanhe seu tempo de prova
-- 📊 **Resultado detalhado** - Veja seus acertos, erros e porcentagem
-- 📖 **Gabarito comentado** - Explicação completa de cada questão
-- 💾 **Histórico salvo** - O sistema lembra as questões anteriores
-- 📱 **Responsivo** - Funciona em desktop, tablet e celular
-- 🎉 **Animação de confetti** - Quando você é aprovado!
+- **30 questões por simulado**
+- **Sistema inteligente**
+- **Timer**
+- **Resultado detalhado**
+- **Gabarito comentado**
+- **Histórico salvo**
 
-## 🎯 Critérios de Aprovação
+## Critérios de Aprovação
 
 - **Mínimo para aprovação:** 21 acertos (70%)
 - **Total de questões por simulado:** 30
 - **Banco total de questões:** 120
 
-## 📚 Temas Abordados
+## Temas Abordados
 
-- Legislação de Trânsito (CTB)
-- Sinalização (placas, semáforos, marcações)
+- Legislação de Trânsito
+- Sinalização
 - Direção Defensiva
 - Primeiros Socorros
 - Mecânica Básica
