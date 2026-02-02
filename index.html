@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulado DETRAN 2026 - Prova Teórica</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Tela Inicial -->
+        <div id="tela-inicial" class="tela ativa">
+            <div class="logo">
+                <div class="icone-carro">🚗</div>
+                <h1>Simulado DETRAN 2026</h1>
+                <p class="subtitulo">Prepare-se para a prova teórica com questões atualizadas!</p>
+            </div>
+            
+            <div class="info-prova">
+                <div class="info-item">
+                    <span class="info-numero">30</span>
+                    <span class="info-texto">Questões</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-numero">21</span>
+                    <span class="info-texto">Mínimo para aprovar</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-numero">70%</span>
+                    <span class="info-texto">Taxa de aprovação</span>
+                </div>
+            </div>
+
+            <div class="dicas">
+                <h3>📚 Dicas para a prova:</h3>
+                <ul>
+                    <li>Leia cada questão com atenção</li>
+                    <li>Não deixe questões em branco</li>
+                    <li>Revise antes de finalizar</li>
+                    <li>Confie no seu conhecimento!</li>
+                </ul>
+            </div>
+
+            <button id="btn-iniciar" class="btn-principal">Iniciar Simulado</button>
+            <p class="data-atualizacao">Questões atualizadas: Fevereiro 2026</p>
+        </div>
+
+        <!-- Tela do Simulado -->
+        <div id="tela-simulado" class="tela">
+            <div class="header-simulado">
+                <div class="progresso-container">
+                    <span id="questao-atual">Questão 1 de 30</span>
+                    <div class="barra-progresso">
+                        <div id="progresso" class="progresso-fill"></div>
+                    </div>
+                </div>
+                <div class="tempo-container">
+                    <span id="tempo">⏱️ 00:00</span>
+                </div>
+            </div>
+
+            <div id="questao-container" class="questao-container">
+                <!-- Questão será inserida aqui via JS -->
+            </div>
+
+            <div class="navegacao">
+                <button id="btn-anterior" class="btn-nav" disabled>← Anterior</button>
+                <div class="indicadores" id="indicadores">
+                    <!-- Indicadores serão inseridos aqui via JS -->
+                </div>
+                <button id="btn-proximo" class="btn-nav">Próxima →</button>
+            </div>
+
+            <button id="btn-finalizar" class="btn-finalizar">Finalizar Prova</button>
+        </div>
+
+        <!-- Tela de Resultado -->
+        <div id="tela-resultado" class="tela">
+            <div id="resultado-container" class="resultado-container">
+                <!-- Resultado será inserido aqui via JS -->
+            </div>
+        </div>
+
+        <!-- Tela de Gabarito -->
+        <div id="tela-gabarito" class="tela">
+            <div class="header-gabarito">
+                <h2>📋 Gabarito Comentado</h2>
+                <button id="btn-voltar-resultado" class="btn-voltar">← Voltar ao Resultado</button>
+            </div>
+            <div id="gabarito-container" class="gabarito-container">
+                <!-- Gabarito será inserido aqui via JS -->
+            </div>
+        </div>
+    </div>
+
+    <script src="questoes.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
